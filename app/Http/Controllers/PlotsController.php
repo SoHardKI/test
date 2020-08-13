@@ -27,23 +27,8 @@ class PlotsController extends Controller
      */
     public function getPlots(Request $request)
     {
-        $inputPlots = explode(',', $request->get('plots'));
-        $plots = Plots::whereIn('cadastral_number', [trim($inputPlots[0]), trim($inputPlots[1])])->get();
-        if (!count($plots)) {
-            $service = new GetInfoService();
-            $requestPlots = $service->getInfo($request->get('plots'));
-            $requestPlots = \GuzzleHttp\json_decode($requestPlots);
-            $plots = collect();
-
-            foreach ($requestPlots as $plot) {
-                $plots->push(Plots::create([
-                    'cadastral_number' => $plot->number,
-                    'address' => $plot->data->attrs->address,
-                    'price' => $plot->data->attrs->cad_cost,
-                    'area' => $plot->data->attrs->area_value
-                ]));
-            }
-        }
+        $service = new GetInfoService();
+        $plots = $service->getInfo($request->get('plots'));
 
         return view('plots.info', compact('plots'));
     }

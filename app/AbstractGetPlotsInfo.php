@@ -3,6 +3,8 @@
 
 namespace App;
 
+use Illuminate\Database\Eloquent\Collection;
+
 /**
  * Class AbstractGetPlotsInfo
  * @package App
@@ -26,5 +28,5 @@ abstract class AbstractGetPlotsInfo
      * @param string $plots
      * @return string
      */
-    abstract public function getInfo(string $plots): string;
+    abstract public function getInfo(string $plots): Collection;
 }
