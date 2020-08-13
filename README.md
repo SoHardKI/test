@@ -1,7 +1,7 @@
 Поднятие проекта <br>
 Создать папку для проекта в нее склонировать проект с github <br>
 Далее нужно создать файл docker-compose.yml и внести туда следующую конфигурацию : <br>
-{version: "2"
+```version: "2"
  
  services:
    mysql:
@@ -80,7 +80,8 @@
      environment:
          PMA_HOST: mysql
          PMA_USER: test_user
-         PMA_PASSWORD: 123 }
+         PMA_PASSWORD: 123 
+```
 После в папке с проектом:<br>
 в консоли: <br>
 docker-compose pull<br>
